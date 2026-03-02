@@ -1,10 +1,12 @@
 #!/bin/bash
-# rabbit3 - Produces filling
+# rabbit3 - Produces filling (pure producer)
 
 OUTPUT_DIR="${OUTPUT_DIR:-output}"
+# Normalize path (remove trailing slash)
+OUTPUT_DIR="${OUTPUT_DIR%/}"
 FILLING_DIR="$OUTPUT_DIR/filling"
-TARGET_COUNT=10000
-FILLINGS=("lotus-seed" "potato" "red-bean" "five-nut" "egg-yolk")
+TARGET_COUNT="${TARGET_COUNT:-10000}"
+FILLINGS=("lotus-seed" "potato" "red-bean" "five-nut" "egg-yolk" "custard" "mung-bean" "black-sesame" "taro" "matcha" "chocolate" "cheese" "durian" "snow-skin" "bird-nest" "truffle" "mango" "coconut" "pineapple" "osmanthus")
 
 mkdir -p "$FILLING_DIR"
 
@@ -23,4 +25,4 @@ while [ $count -lt $TARGET_COUNT ]; do
     ((count++))
 done
 
-echo "rabbit3: Produced $TARGET_COUNT filling files"
+echo "rabbit3: Done - Produced $TARGET_COUNT filling files"

@@ -7,6 +7,12 @@ This project is a collection of scripts that mimic a "mooncake steamline":
 - rabbit5 will press the bun and make it a cake
 - machine1 will wrap the cake with a box
 
+```
+dough -> crust -+
+                |
+filling --------+-----> bun -> cake -> box
+```
+
 **The goal of them is to make 10000 mooncake!**
 
 `/output` is the working directory, where inside it:
