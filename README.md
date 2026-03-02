@@ -1,3 +1,5 @@
+# Mooncake factory simulation
+
 This project is a collection of scripts that mimic a "mooncake steamline":
 
 - rabbit1 will produce dough
@@ -6,6 +8,8 @@ This project is a collection of scripts that mimic a "mooncake steamline":
 - rabbit4 will take one crust and one filling and make a bun
 - rabbit5 will press the bun and make it a cake
 - machine1 will wrap the cake with a box
+
+![mooncake-factory](./mooncake-factory.gif)
 
 ```
 dough -> crust -+
