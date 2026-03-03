@@ -41,7 +41,7 @@ filling ---------+-----> bun -> cake -> box
 
 **Key patterns:**
 - **File-based flow**: Materials flow through directories via `mv` (move) operations
-- **Polling with idle timeout**: Consumers poll input directories; exit after 60s of no work
+- **Polling indefinitely**: Consumers poll input directories; wait indefinitely for work
 - **File-based locking**: `rabbit4.sh` uses timestamp-checked locks in `$OUTPUT_DIR/.locks/` for parallel instance coordination
 - **Graceful shutdown**: `main.sh` traps SIGINT/SIGTERM and terminates child processes
 
@@ -63,5 +63,4 @@ box:    b0000d0000f0001   (counter + bun name)
 | `OUTPUT_DIR` | `./output/` | Working directory |
 | `TARGET_COUNT` | `10000` | Number of mooncakes to produce |
 | `POLL_INTERVAL` | `1` | Seconds between polling attempts |
-| `IDLE_TIMEOUT` | `60` | Seconds of no work before exit |
 | `LOCK_AGE` | `10` | Max age of lock file before stale (rabbit4 only) |

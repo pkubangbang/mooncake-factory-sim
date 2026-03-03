@@ -11,14 +11,12 @@ FILLING_DIR="$OUTPUT_DIR/filling"
 BUN_DIR="$OUTPUT_DIR/bun"
 LOCK_DIR="$OUTPUT_DIR/.locks"
 POLL_INTERVAL="${POLL_INTERVAL:-1}"
-IDLE_TIMEOUT="${IDLE_TIMEOUT:-60}"
 # Lock is considered stale if older than this many seconds
 LOCK_AGE="${LOCK_AGE:-10}"
 
 mkdir -p "$BUN_DIR" "$LOCK_DIR"
 
 processed=0
-idle_start=0
 
 # Function to check if lock is recent (not stale)
 is_lock_recent() {
@@ -119,7 +117,6 @@ while true; do
                 sleep 3
                 ((processed++))
                 found_work=true
-                idle_start=0
 
                 # Release locks after successful processing
                 release_lock "$filling_file"
@@ -131,15 +128,7 @@ while true; do
     fi
 
     if [ "$found_work" = false ]; then
-        if [ $idle_start -eq 0 ]; then
-            idle_start=$SECONDS
-        elif [ $((SECONDS - idle_start)) -ge $IDLE_TIMEOUT ]; then
-            echo "rabbit4: No crust/filling for ${IDLE_TIMEOUT}s, stopping (PID: $$)"
-            break
-        fi
         sleep $POLL_INTERVAL
-    else
-        idle_start=0
     fi
 done
 
